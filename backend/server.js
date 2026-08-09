@@ -7,6 +7,8 @@ import connectDB from "./config/db.js";
 
 import authRoutes from "./routes/auth.route.js";
 
+import messageRoutes from "./routes/message.route.js";
+
 import cookieParser from "cookie-parser";
 
 
@@ -18,6 +20,8 @@ app.use(express.json()); // to parse incoming JSON requests
 app.use(express.static("public"));
 
 app.use('/api/auth',authRoutes);
+
+app.use('/api/message',messageRoutes);
 
 
 
