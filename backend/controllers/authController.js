@@ -105,3 +105,22 @@ export const logoutUser = async (req, res) => {
         });
     }
 };
+
+
+export const getOtherUsers=async(req,res)=>{
+
+    try{
+        const loggedInUserId=req.userId;
+
+        const otherUsers=await User.find({
+            _id:{$ne:loggedInUserId}
+        }).select('-password');
+
+        return res.status(200).json({users:otherUsers});
+    }
+    catch(error){
+        console.log(error);
+        return res.status(500).json({message:"Internal server error"});
+    }
+
+}
