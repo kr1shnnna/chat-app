@@ -1,6 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -8,9 +11,30 @@ const Login = () => {
     password: "",
   });
 
-  const onSumbitHandler = (e) => {
+  const navigate=useNavigate()
+
+  const onSumbitHandler = async (e) => {
     e.preventDefault();
-    console.log(user);
+
+     try{
+      const res=await axios.post(`http://localhost:3000/api/auth/login`,user,{
+        headers:{
+          'Content-Type':'application/json'
+        },
+       withCredentials:true
+      })
+  
+      toast.success(res.data.message)
+      navigate('/');
+      console.log(res);
+     
+    }
+    catch(err){
+      toast.error(err.response.data.message)
+      console.log(err)
+
+    }
+   
     setUser({
       userName: "",
       password: "",

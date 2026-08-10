@@ -1,6 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link ,useNavigate} from 'react-router-dom'
 import { useState } from 'react'
+import axios from 'axios'
+import { toast } from 'react-hot-toast'
 
 const SignUp = () => {
 
@@ -12,13 +14,32 @@ const SignUp = () => {
     gender:''
   })
 
+  const navigate=useNavigate()
+
   const handleCheckbox=(gender)=>{
     setUser({...user,gender})
   }
 
-  const onSumbitHandler=(e)=>{
+  const onSumbitHandler= async (e)=>{
     e.preventDefault();
-    console.log(user);
+    try{
+      const res=await axios.post(`http://localhost:3000/api/auth/register`,user,{
+        headers:{
+          'Content-Type':'application/json'
+        },
+       withCredentials:true
+      })
+     if(res.data.success){
+      toast.success(res.data.message)
+      navigate('/login');
+
+     }
+
+    }
+    catch(err){
+      console.log(err)
+    }
+    
     setUser({
       fullName:'',
       userName:'',
