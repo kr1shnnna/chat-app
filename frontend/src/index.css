@@ -8,3 +8,10 @@
   padding:0;
   box-sizing:border-box;
 }
+
+body{
+  background:url('../public/chat-app-background.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
