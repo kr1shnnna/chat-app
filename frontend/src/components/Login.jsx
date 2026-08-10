@@ -3,6 +3,8 @@ import { Link ,useNavigate} from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setAuthUser } from "../redux/userSlice.js";
 
 
 const Login = () => {
@@ -11,6 +13,7 @@ const Login = () => {
     password: "",
   });
 
+  const dispatch = useDispatch();
   const navigate=useNavigate()
 
   const onSumbitHandler = async (e) => {
@@ -26,7 +29,8 @@ const Login = () => {
   
       toast.success(res.data.message)
       navigate('/');
-      console.log(res);
+    
+      dispatch(setAuthUser(res.data.user))
      
     }
     catch(err){
