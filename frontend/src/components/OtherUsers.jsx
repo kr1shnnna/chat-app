@@ -6,7 +6,7 @@ const OtherUsers = () => {
    
 
 
-  <div className='overflow-auto '>
+  <div className='overflow-auto'>
     <OtherUser />
     <OtherUser />
     <OtherUser />

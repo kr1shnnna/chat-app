@@ -7,7 +7,7 @@ const Sidebar = () => {
     <div className='border-r border-slate-700 p-4 flex flex-col '>
         <form action="" className='flex items-center gap-2'>
             <input  placeholder='Search'
-            className='input input-bordered rounded-md'type='text'/>
+            className='input input-bordered rounded-md bg-[#1D232A] text-white border-slate-700 focus:outline-none focus:border-slate-500'type='text'/>
             <button type='submit' className='btn  bg-slate-700 '>
                 <MdSearch  className='w-6 h-6 outline-none'/>
             </button>
